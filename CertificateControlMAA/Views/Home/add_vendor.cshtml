@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "add_vendor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавление организации сертификации</h2>
+<div>
+    <h3>Форма добавления новой организации</h3>
+    <form method="post" action="">
+        <input type="hidden" name="id" />
+        <table>
+            <tr>
+                <td><p>Название организации</p></td>
+                <td><input type="text" name="name" /> </td>
+            </tr>
+            <tr>
+                <td><p>Дата учреждения</p></td>
+                <td><input type="date" name="foundationDate" /></td>
+            </tr>
+            <tr>
+                <td><p>Адрес</p></td>
+                <td><input type="text" name="address" /> </td>
+            </tr>
+            <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>
+
+        </table>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "vendor_management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Управление списком организаций</h2>
+<div>
+    <p><a href="/Home/add_vendor">Добавить организацию сертификации</a></p>
+    <table>
+        <tr>
+            <td><p>ID организации</p></td>
+            <td><p>Полное наименование организации</p></td>
+            <td><p>Дата учреждения</p></td>
+            <td><p>Адрес</p></td>
+        </tr>
+
+        @foreach (var b in ViewBag.vendors)
+            {
+            <tr>
+                <td><p>@b.id</p></td>
+                <td><p>@b.name</p></td>
+                <td><p>@b.foundationDate?</p></td>
+                <td><p>@b.address</p></td>
+                <td><p><a href="/Home/edit_vendor/@b.id">Изменить</a></p></td>
+                <td><p><a href="/Home/delete_vendor/@b.id">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</div>
+

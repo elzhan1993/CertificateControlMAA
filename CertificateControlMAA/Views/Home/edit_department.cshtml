@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "edit_department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Изменение названия службы</h2>
+<div>
+    <h3>Форма изменения названия службы</h3>
+    <form method="post" action="">
+        <input type="hidden" name="id" value="@ViewBag.department.id" />
+        <table>
+            <tr>
+                <td><p>Название службы</p></td>
+                <td><input type="text" name="name" value="@ViewBag.department.name" /> </td>
+            </tr>
+            <tr><td><input type="submit" value="Изменить" /> </td><td></td></tr>
+        </table>
+    </form>
+</div>

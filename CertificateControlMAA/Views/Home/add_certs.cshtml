@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+
+
+    <div> 
+        <h3>Добавление сертификата сотруднику @ViewBag.ownerName</h3>
+        <form method="post" action="">
+            <input type="hidden" value="@ViewBag.ownerID" name="ownerID" />
+            <table>
+                <tr>
+                    <td><p>Категория сертификата</p></td>
+                    <td><input type="text" name="category" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Название сертификата</p></td>
+                    <td><input type="text" name="name" /> </td>
+                </tr>
+                <tr>
+                    <td><p>start date</p></td>
+                    <td><input type="text" name="startDate" /> </td>
+                </tr>
+                <tr>
+                    <td><p>end date</p></td>
+                    <td><input type="text" name="endDate" /> </td>
+                </tr>
+                <tr>
+                    <td><p>get date</p></td>
+                    <td><input type="text" name="getDate" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Организация выдачи</p></td>
+                    <td>
+                        <select name="vendorID">
+                            @foreach (var b in ViewBag.vendors)
+                            {
+                                <option value="@b.id">@b.name</option>
+                            }
+                        </select>
+                    </td>
+                </tr>        
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            <</table>>    
+        </form>
+    </div>
+

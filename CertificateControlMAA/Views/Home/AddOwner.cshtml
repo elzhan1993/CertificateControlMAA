@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "AddOwner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Добавить сотрудника</h2>
+<div>
+    <h3>Форма добавления нового сотрудника</h3>
+    <form method="post" action="">
+        <input type="hidden" name="departmentID" value="@ViewBag.dep_id" />
+        <table>
+            <tr>
+                <td><p>Имя</p></td>
+                <td><input type="text" name="name" /> </td>
+            </tr>
+            <tr>
+                <td><p>Фамилия</p></td>
+                <td><input type="text" name="surname" /> </td>
+            </tr>
+            <tr>
+                <td><p>Отчество</p></td>
+                <td><input type="text" name="secondName" /> </td>
+            </tr>
+            <tr>
+                <td><p>Дата рождения</p></td>
+                <td><input type="text" name="birthDate" /> </td>
+            </tr>
+            <tr>
+                <td><p>Должность</p></td>
+                <td><input type="text" name="position" /> </td>
+            </tr>
+            <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>
+           
+        </table>
+    </form>
+</div>
+

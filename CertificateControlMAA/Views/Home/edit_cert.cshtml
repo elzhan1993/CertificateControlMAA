@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "edit_cert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактирование сертификата</h2>
+<div>
+    <h3>Форма редактирования данных сертификата</h3>
+    <form method="post" action="">
+        <input type="hidden" name="id" value="@ViewBag.cert.id" />
+        <table>
+            <tr>
+                <td><p>Название</p></td>
+                <td><input type="text" name="name" value="@ViewBag.cert.name" /> </td>
+            </tr>
+            <tr>
+                <td><p>Категория</p></td>
+                <td><input type="text" name="category" value="@ViewBag.cert.category" /> </td>
+            </tr>
+            <tr>
+                <td><p>Срок начала действия</p></td>
+                <td><input type="text" name="startDate" value="@ViewBag.cert.startDate" /> </td>
+            </tr>
+            <tr>
+                <td><p>Срок окончания действия</p></td>
+                <td><input type="text" name="endDate" value="@ViewBag.cert.endDate" /> </td>
+            </tr>
+            <tr>
+                <td><p>Дата выдачи</p></td>
+                <td><input type="text" name="getDate" value="@ViewBag.cert.getDate" /> </td>
+            </tr>
+            <tr>
+                <td><p>Организация выдачи</p></td>
+                <td> <select name="vendorID"> 
+                         <option disabled value="@ViewBag.current_ven.id">@ViewBag.current_ven.name</option>
+                         @foreach (var b in ViewBag.vendors)
+                         {
+                             <option value="@b.id">@b.name</option>
+                         }
+                     </select> </td>
+            </tr>
+            <tr><td><input type="submit" value="Изменить" /> </td><td></td></tr>
+
+        </table>
+    </form>
+</div>
+

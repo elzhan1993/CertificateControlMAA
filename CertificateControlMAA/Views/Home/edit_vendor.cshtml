@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "edit_vendor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>edit_vendor</h2>
+
+<h2>Изменение организации сертификации</h2>
+<div>
+    <h3>Форма изменения данных организации</h3>
+    <form method="post" action="">
+        <input type="hidden" name="id" value="@ViewBag.vendor.id"/>
+        <table>
+            <tr>
+                <td><p>Название организации</p></td>
+                <td><input type="text" name="name" value="@ViewBag.vendor.name" /> </td>
+            </tr>
+            <tr>
+                <td><p>Дата учреждения</p></td>
+                <td><input type="text" name="foundationDate" value="@ViewBag.vendor.foundationDate"/></td>
+            </tr>
+            <tr>
+                <td><p>Адрес</p></td>
+                <td><input type="text" name="address" value="@ViewBag.vendor.address"/> </td>
+            </tr>
+            <tr><td><input type="submit" value="Изменить" /> </td><td></td></tr>
+
+        </table>
+    </form>
+</div>

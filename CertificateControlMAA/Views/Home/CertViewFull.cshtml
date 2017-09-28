@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "CertViewFull";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2> Просмотр сертификата сотрудника @ViewBag.owner.surname @ViewBag.owner.name @ViewBag.owner.secondName</h2>
+<p>ID сертификата</p>
+<p>@ViewBag.certificate.id</p>
+<p>Категория сертификата</p>
+<p>@ViewBag.certificate.category</p>
+<p>Название сертификата</p>
+<p>@ViewBag.certificate.name</p>
+<p>Срок начала действия</p>
+<p>@ViewBag.certificate.startDate</p>
+<p>Срок окночания</p>
+<p>@ViewBag.certificate.endDate</p>
+<p>Дата выдачи</p>
+<p>@ViewBag.certificate.getDate</p>
+<p>Организация выдачи</p>
+<p>@ViewBag.vendor.name</p>
+

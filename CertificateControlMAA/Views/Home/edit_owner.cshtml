@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "edit_owner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Изменение данных владельца сертификата</h2>
+<div>
+    <h3>Форма редактирования данных сотрудника</h3>
+    <form method="post" action="">
+        <table>
+            <tr>
+                <td><p>Имя</p></td>
+                <td><input type="text" name="name" value="@ViewBag.owner.name"/> </td>
+            </tr>
+            <tr>
+                <td><p>Фамилия</p></td>
+                <td><input type="text" name="surname" value="@ViewBag.owner.surname" /> </td>
+            </tr>
+            <tr>
+                <td><p>Отчество</p></td>
+                <td><input type="text" name="secondName" value="@ViewBag.owner.secondName" /> </td>
+            </tr>
+            <tr>
+                <td><p>Дата рождения</p></td>
+                <td><input type="text" name="birthDate" value="@ViewBag.owner.birthDate"/> </td>
+            </tr>
+            <tr>
+                <td><p>Должность</p></td>
+                <td><input type="text" name="position" value="@ViewBag.owner.position" /> </td>
+            </tr>
+            <tr>
+                <td><p>Служба</p></td>
+                <td> <select  name="departmentID">
+                    <option disabled value="@ViewBag.current_dep.id">@ViewBag.current_dep.name</option>
+                    @foreach (var b in ViewBag.departments)
+                    {
+                        <option value="@b.id">@b.name</option>
+                    }
+                    </select></td>
+            </tr>
+            <tr><td><input type="submit" value="Изменить" /> </td><td></td></tr>
+
+        </table>
+    </form>
+</div>

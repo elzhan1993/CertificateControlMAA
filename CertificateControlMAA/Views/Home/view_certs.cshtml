@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CertificateControlMAA.Models.certificate>
+
+@{
+    ViewBag.Title = "Просмотр сертификатов";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Сертификаты @ViewBag.owner.name</h2>
+<p><a href="/Home/add_certs/@ViewBag.owner.id">Добавить сертификат</a></p>
+<p>ID сотрудника</p>
+<p>@ViewBag.owner.id</p>
+<p>Подразделение</p>
+<p>@ViewBag.department.name</p>
+<p>Фамилия</p>
+<p>@ViewBag.owner.surname</p>
+<p>Имя</p>
+<p>@ViewBag.owner.name</p>
+<p>отчество</p>
+<p>@ViewBag.owner.secondName</p>
+<p>Дата рождения</p>
+<p>@ViewBag.owner.birthDate</p>
+<p>Должность</p>
+<p>@ViewBag.owner.position</p>
+<div>
+    <h3>Сертификаты</h3>
+    <table>
+        <tr>
+            <td><p>ID</p></td>
+            <td><p>Категория</p></td>
+            <td><p>Название</p></td>
+            <td><p>Начало</p></td>
+            <td><p>Конец</p></td>
+            <td></td>
+        </tr>
+        @foreach (var b in ViewBag.certs)
+            {
+            <tr>
+                <td><p>@b.id</p></td>
+                <td><p>@b.category</p></td>
+                <td><p>@b.name</p></td>
+                <td><p>@b.startDate</p></td>
+                <td><p>@b.endDate</p></td>
+                <td><p><a href="/Home/CertViewFull/@b.id">Просмотреть</a></p></td>
+                <td><p><a href="/Home/edit_cert/@b.id">Изменить</a></p></td>
+                <td><p><a href="/Home/delete_certs/@b.id">Удалить</a></p></td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+

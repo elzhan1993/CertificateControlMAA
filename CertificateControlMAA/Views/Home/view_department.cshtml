@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "view_department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h3>Сотрудники @ViewBag.dep_name</h3>
+    <p><a href="/Home/AddOwner/@ViewBag.dep_id">Добавить сотрудника в текущую службу</a></p>
+    <p><a href="/Home/vendor_management">Управление списком организаций сертификации</a></p>
+    <table>
+        <tr>
+            <td><p>ID сотрудника</p></td>
+            <td><p>Фамилия</p></td>
+            <td><p>Имя</p></td>
+            <td><p>Должность</p></td>
+            <td></td>
+        </tr>
+
+        @foreach (var b in ViewBag.owners)
+            {
+            <tr>
+                <td><p>@b.id</p></td>
+                <td><p>@b.surname</p></td>
+                <td><p>@b.name</p></td>
+                <td><p>@b.position</p></td>
+                <td><p><a href="/Home/view_certs/@b.id">Сертификаты</a></p></td>
+                <td><p><a href="/Home/edit_owner/@b.id">Изменить</a></p></td>
+                <td><p><a href="/Home/delete_owner/@b.id">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</div>
