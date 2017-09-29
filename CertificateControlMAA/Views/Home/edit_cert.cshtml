@@ -12,27 +12,36 @@
         <table>
             <tr>
                 <td><p>Название</p></td>
-                <td><input type="text" name="name" value="@ViewBag.cert.name" /> </td>
+                <td><input type="text" name="name" value="@ViewBag.cert.name" required/> </td>
             </tr>
             <tr>
                 <td><p>Категория</p></td>
-                <td><input type="text" name="category" value="@ViewBag.cert.category" /> </td>
+                <td>
+                    <select name="category" required>
+                        <option disabled value="@ViewBag.current_cat.id">@ViewBag.current_cat.name</option>
+                        @foreach (var b in ViewBag.categories)
+                        {
+                            <option value="@b.id">@b.name</option>
+                        }
+                    </select>
+
+                </td>
             </tr>
             <tr>
                 <td><p>Срок начала действия</p></td>
-                <td><input type="text" name="startDate" value="@ViewBag.cert.startDate" /> </td>
+                <td><input type="text" name="startDate" value="@ViewBag.cert.startDate" required/> </td>
             </tr>
             <tr>
                 <td><p>Срок окончания действия</p></td>
-                <td><input type="text" name="endDate" value="@ViewBag.cert.endDate" /> </td>
+                <td><input type="text" name="endDate" value="@ViewBag.cert.endDate" required/> </td>
             </tr>
             <tr>
                 <td><p>Дата выдачи</p></td>
-                <td><input type="text" name="getDate" value="@ViewBag.cert.getDate" /> </td>
+                <td><input type="text" name="getDate" value="@ViewBag.cert.getDate" required/> </td>
             </tr>
             <tr>
                 <td><p>Организация выдачи</p></td>
-                <td> <select name="vendorID"> 
+                <td> <select name="vendorID" required> 
                          <option disabled value="@ViewBag.current_ven.id">@ViewBag.current_ven.name</option>
                          @foreach (var b in ViewBag.vendors)
                          {

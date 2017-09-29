@@ -89,6 +89,7 @@ namespace CertificateControlMAA.Controllers
             ViewBag.ownerID = id;
             ViewBag.ownerName = db_certs.owners.First(de => de.id == id).name;
             ViewBag.vendors = db_certs.vendors;
+            ViewBag.cert_categories = db_certs.categories;
             return View();
         }
 
@@ -213,6 +214,8 @@ namespace CertificateControlMAA.Controllers
             ViewBag.cert = db_certs.certificates.First(d => d.id == id);
             ViewBag.vendors = db_certs.vendors;
             ViewBag.current_ven = db_certs.vendors.First(v => v.id == id);
+            ViewBag.categories = db_certs.categories;
+            ViewBag.current_cat = db_certs.categories.First(c => c.id == id);
             return View();
         }
 
@@ -227,7 +230,52 @@ namespace CertificateControlMAA.Controllers
             cert.getDate = certp.getDate;
             cert.vendorID = certp.vendorID;
             db_certs.SaveChanges();
-            return RedirectToAction(@"view_certs/" + certp.ownerID, "Home");
+            return RedirectToAction(@"view_certs/" + cert.ownerID, "Home");
+        }
+        public ActionResult category_management()
+        {
+            IEnumerable<cert_category> categories = db_certs.categories;
+            ViewBag.categories = categories;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult add_category()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult add_category(cert_category cat)
+        {
+            db_certs.categories.Add(cat);
+            db_certs.SaveChanges();
+            return RedirectToAction("category_management", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult edit_category(int id)
+        {
+            ViewBag.category = db_certs.categories.First(d => d.id == id);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult edit_category(cert_category category)
+        {
+            var cat = db_certs.categories.First(d => d.id == category.id);
+            cat.name = category.name;
+            db_certs.SaveChanges();
+            return RedirectToAction("category_management", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult delete_category(int id)
+        {
+
+            var cat = db_certs.categories.First(de => de.id == id);
+            db_certs.categories.Remove(cat);
+            db_certs.SaveChanges();
+            return RedirectToAction("category_management", "Home");
         }
 
     }

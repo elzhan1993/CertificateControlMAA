@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "edit_category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактирование категории</h2>
+
+<h2>Изменение названия службы</h2>
+<div>
+    <h3>Форма изменения названия категории сертификации</h3>
+    <form method="post" action="">
+        <input type="hidden" name="id" value="@ViewBag.category.id" />
+        <table>
+            <tr>
+                <td><p>Название категории сертификации</p></td>
+                <td><input type="text" name="name" value="@ViewBag.category.name" required /> </td>
+            </tr>
+            <tr><td><input type="submit" value="Изменить" /> </td><td></td></tr>
+        </table>
+    </form>
+</div>

@@ -205,6 +205,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CertContext.cs" />
     <Compile Include="Models\certificate.cs" />
+    <Compile Include="Models\cert_category.cs" />
     <Compile Include="Models\department.cs" />
     <Compile Include="Models\human.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -285,6 +286,9 @@
     <Content Include="Views\Home\edit_department.cshtml" />
     <Content Include="Views\Home\edit_owner.cshtml" />
     <Content Include="Views\Home\edit_cert.cshtml" />
+    <Content Include="Views\Home\category_management.cshtml" />
+    <Content Include="Views\Home\add_category.cshtml" />
+    <Content Include="Views\Home\edit_category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

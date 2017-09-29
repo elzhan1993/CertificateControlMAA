@@ -8,7 +8,7 @@ namespace CertificateControlMAA.Models
     public class certificate
     {
         public int id { get; set; }
-        public string category { get; set; }
+        public int category { get; set; }
         public string name { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }

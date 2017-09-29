@@ -11,11 +11,11 @@
         <table>
             <tr>
                 <td><p>Имя</p></td>
-                <td><input type="text" name="name" value="@ViewBag.owner.name"/> </td>
+                <td><input type="text" name="name" value="@ViewBag.owner.name" required/> </td>
             </tr>
             <tr>
                 <td><p>Фамилия</p></td>
-                <td><input type="text" name="surname" value="@ViewBag.owner.surname" /> </td>
+                <td><input type="text" name="surname" value="@ViewBag.owner.surname" required/> </td>
             </tr>
             <tr>
                 <td><p>Отчество</p></td>
@@ -23,15 +23,15 @@
             </tr>
             <tr>
                 <td><p>Дата рождения</p></td>
-                <td><input type="text" name="birthDate" value="@ViewBag.owner.birthDate"/> </td>
+                <td><input type="text" name="birthDate" value="@ViewBag.owner.birthDate" required/> </td>
             </tr>
             <tr>
                 <td><p>Должность</p></td>
-                <td><input type="text" name="position" value="@ViewBag.owner.position" /> </td>
+                <td><input type="text" name="position" value="@ViewBag.owner.position" required/> </td>
             </tr>
             <tr>
                 <td><p>Служба</p></td>
-                <td> <select  name="departmentID">
+                <td> <select  name="departmentID" required>
                     <option disabled value="@ViewBag.current_dep.id">@ViewBag.current_dep.name</option>
                     @foreach (var b in ViewBag.departments)
                     {

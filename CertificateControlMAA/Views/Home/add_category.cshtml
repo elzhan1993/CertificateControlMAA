@@ -1,18 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "AddDepartment";
+    ViewBag.Title = "add_category";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Добавление службы (департамента)</h2>
-
+<h2>Добавить категорию</h2>
 <div>
-    <h3>Форма добавления новой службы</h3>
+    <h3>Форма добавления новой категории сертификации</h3>
     <form method="post" action="">
         <input type="hidden" name="id" />
         <table>
             <tr>
-                <td><p>Название службы (департамента)</p></td>
+                <td><p>Название категории</p></td>
                 <td><input type="text" name="name" required /> </td>
             </tr>
             <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>

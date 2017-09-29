@@ -12,6 +12,7 @@ namespace CertificateControlMAA.Models
         public DbSet<owner> owners { get; set; }
         public DbSet<vendor> vendors { get; set; }
         public DbSet<department> departments { get; set; }
+        public DbSet<cert_category> categories { get; set; }
 
     }
 }
