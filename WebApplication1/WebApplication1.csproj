@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{87B15938-0E37-440C-8363-6B59F2DDBBD6}</ProjectGuid>
+    <ProjectGuid>{F8D4BB53-D81D-4C52-9364-EBCA2F82BB1C}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CertificateControlMAA</RootNamespace>
-    <AssemblyName>CertificateControlMAA</AssemblyName>
+    <RootNamespace>WebApplication1</RootNamespace>
+    <AssemblyName>WebApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -197,24 +197,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Models\ManageController.cs" />
-    <Compile Include="Controllers\MyIP.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CertContext.cs" />
-    <Compile Include="Models\certificate.cs" />
-    <Compile Include="Models\cert_category.cs" />
-    <Compile Include="Models\department.cs" />
-    <Compile Include="Models\human.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\owner.cs" />
-    <Compile Include="Models\startInitializator.cs" />
-    <Compile Include="Models\user.cs" />
-    <Compile Include="Models\userContext.cs" />
-    <Compile Include="Models\vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -244,9 +233,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -257,6 +244,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -278,25 +267,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\add_certs.cshtml" />
-    <Content Include="Views\Home\view_certs.cshtml" />
-    <Content Include="Views\Home\AddOwner.cshtml" />
-    <Content Include="Views\Home\AddDepartment.cshtml" />
-    <Content Include="Views\Home\view_department.cshtml" />
-    <Content Include="Views\Home\CertViewFull.cshtml" />
-    <Content Include="Views\Home\vendor_management.cshtml" />
-    <Content Include="Views\Home\add_vendor.cshtml" />
-    <Content Include="Views\Home\edit_vendor.cshtml" />
-    <Content Include="Views\Home\edit_department.cshtml" />
-    <Content Include="Views\Home\edit_owner.cshtml" />
-    <Content Include="Views\Home\edit_cert.cshtml" />
-    <Content Include="Views\Home\category_management.cshtml" />
-    <Content Include="Views\Home\add_category.cshtml" />
-    <Content Include="Views\Home\edit_category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -305,9 +278,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -325,9 +295,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55177</DevelopmentServerPort>
+          <DevelopmentServerPort>49299</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55177/</IISUrl>
+          <IISUrl>http://localhost:49299/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

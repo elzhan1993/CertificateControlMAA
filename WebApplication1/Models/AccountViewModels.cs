@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CertificateControlMAA.Models
+namespace WebApplication1.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -79,11 +79,6 @@ namespace CertificateControlMAA.Models
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        [Display(Name = "Служба")]
-        public int departmentID { get; set; }
-
     }
 
     public class ResetPasswordViewModel

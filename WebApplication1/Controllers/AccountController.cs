@@ -8,21 +8,18 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CertificateControlMAA.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
+using WebApplication1.Models;
 
-namespace CertificateControlMAA.Controllers
+namespace WebApplication1.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        CertContext db_certs = new CertContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
-            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -142,7 +139,6 @@ namespace CertificateControlMAA.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.departments = db_certs.departments;
             return View();
         }
 
@@ -153,17 +149,12 @@ namespace CertificateControlMAA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-                
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, "user");
-     
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771

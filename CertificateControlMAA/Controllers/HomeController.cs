@@ -7,11 +7,13 @@ using CertificateControlMAA.Models;
 
 namespace CertificateControlMAA.Controllers
 {
+    
     public class HomeController : Controller
     {
         CertContext db_certs = new CertContext();
+        ApplicationDbContext db_user = new ApplicationDbContext();
 
-
+       [Authorize(Roles ="admin")]
         public ActionResult Index()
         {
             IEnumerable<department> department_list = db_certs.departments;
@@ -40,8 +42,10 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="admin, user")]
         public ActionResult view_department(int id)
         {
+           
             IEnumerable<owner> owners = db_certs.owners.Where(o => o.departmentID == id);
             ViewBag.owners = owners;
             ViewBag.dep_name = db_certs.departments.First(o => o.id == id).name;
