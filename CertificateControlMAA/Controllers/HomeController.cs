@@ -45,7 +45,7 @@ namespace CertificateControlMAA.Controllers
         [Authorize(Roles ="admin, user")]
         public ActionResult view_department(int id)
         {
-           
+            
             IEnumerable<owner> owners = db_certs.owners.Where(o => o.departmentID == id);
             ViewBag.owners = owners;
             ViewBag.dep_name = db_certs.departments.First(o => o.id == id).name;
