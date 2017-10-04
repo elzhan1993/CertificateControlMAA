@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CertificateControlMAA.Models;
+using System.Web.Security;
+using System.Threading;
+using Microsoft.AspNet.Identity;
 
 namespace CertificateControlMAA.Controllers
 {
@@ -13,19 +16,33 @@ namespace CertificateControlMAA.Controllers
         CertContext db_certs = new CertContext();
         ApplicationDbContext db_user = new ApplicationDbContext();
 
-       [Authorize(Roles ="admin")]
+       [Authorize(Roles ="admin, user")]
         public ActionResult Index()
         {
-            IEnumerable<department> department_list = db_certs.departments;
-            ViewBag.departments = department_list;
-            return View();
+
+            var current_user = db_user.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            if (HttpContext.User.IsInRole("admin"))
+            {
+                IEnumerable<department> department_list = db_certs.departments;
+                ViewBag.departments = department_list;
+                return View();
+            }
+            else if (HttpContext.User.IsInRole("user"))
+            {
+                return RedirectToAction("view_department/"+current_user.departmentID, "Home");
+            }
+            else {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         [HttpGet]
+        [Authorize(Roles ="admin")]
         public ActionResult AddDepartment() {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult AddDepartment(department dep)
         {
             db_certs.departments.Add(dep);
@@ -33,6 +50,7 @@ namespace CertificateControlMAA.Controllers
             return RedirectToAction("Index","Home");
         }
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult delete_department(int id) {
             
             var depart = db_certs.departments.First(de => de.id == id);
@@ -45,21 +63,29 @@ namespace CertificateControlMAA.Controllers
         [Authorize(Roles ="admin, user")]
         public ActionResult view_department(int id)
         {
-            
-            IEnumerable<owner> owners = db_certs.owners.Where(o => o.departmentID == id);
-            ViewBag.owners = owners;
-            ViewBag.dep_name = db_certs.departments.First(o => o.id == id).name;
-            ViewBag.dep_id = id;
-            return View();
+            var current_user = db_user.Users.First(u => u.UserName == User.Identity.Name);
+            if (current_user.departmentID == id)
+            {
+                IEnumerable<owner> owners = db_certs.owners.Where(o => o.departmentID == id);
+                ViewBag.owners = owners;
+                ViewBag.dep_name = db_certs.departments.First(o => o.id == id).name;
+                ViewBag.dep_id = id;
+                return View();
+            }
+            else {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult AddOwner(int id)
         {
             ViewBag.dep_id = id;
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "admin, user")]
         public ActionResult AddOwner(owner owner)
         {
             db_certs.owners.Add(owner);
@@ -67,6 +93,7 @@ namespace CertificateControlMAA.Controllers
             return RedirectToAction(@"view_department/"+owner.departmentID, "Home");
         }
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult delete_owner(int id)
         {
             var owner = db_certs.owners.First(de => de.id == id);
@@ -76,6 +103,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult view_certs(int id)
         {
             IEnumerable<certificate> certs = db_certs.certificates.Where(x => x.ownerID == id);
@@ -88,6 +116,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult add_certs(int id)
         {
             ViewBag.ownerID = id;
@@ -98,6 +127,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, user")]
         public ActionResult add_certs(certificate cert)
         {
             db_certs.certificates.Add(cert);
@@ -106,6 +136,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult delete_certs(int id)
         {
             var cert_del = db_certs.certificates.First(de => de.id == id);
@@ -115,6 +146,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult CertViewFull(int id)
         {
             certificate certificate = db_certs.certificates.First(c => c.id == id);
@@ -126,6 +158,7 @@ namespace CertificateControlMAA.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin, user")]
         public ActionResult vendor_management()
         {
             IEnumerable<vendor> vendors = db_certs.vendors;
@@ -134,12 +167,14 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult add_vendor()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, user")]
         public ActionResult add_vendor(vendor vendor)
         {
             db_certs.vendors.Add(vendor);
@@ -147,6 +182,7 @@ namespace CertificateControlMAA.Controllers
             return RedirectToAction("vendor_management", "Home");
         }
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult delete_vendor(int id)
         {
             var ven_del = db_certs.vendors.First(de => de.id == id);
@@ -156,6 +192,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult edit_vendor(int id)
         {
             ViewBag.vendor = db_certs.vendors.First(v => v.id == id);
@@ -163,6 +200,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, user")]
         public ActionResult edit_vendor(vendor vendor)
         {
             var ven = db_certs.vendors.First(v => v.id == vendor.id);
@@ -174,6 +212,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult edit_department(int id)
         {
             ViewBag.department = db_certs.departments.First(d => d.id == id);
@@ -181,6 +220,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult edit_department(department department)
         {
             var dep = db_certs.departments.First(d => d.id == department.id);
@@ -190,6 +230,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult edit_owner(int id)
         {
             ViewBag.owner = db_certs.owners.First(d => d.id == id);
@@ -199,6 +240,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, user")]
         public ActionResult edit_owner(owner owner)
         {
             var own = db_certs.owners.First(d => d.id == owner.id);
@@ -213,6 +255,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin, user")]
         public ActionResult edit_cert(int id)
         {
             ViewBag.cert = db_certs.certificates.First(d => d.id == id);
@@ -224,6 +267,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, user")]
         public ActionResult edit_cert(certificate certp)
         {
             var cert = db_certs.certificates.First(d => d.id == certp.id);
@@ -236,6 +280,7 @@ namespace CertificateControlMAA.Controllers
             db_certs.SaveChanges();
             return RedirectToAction(@"view_certs/" + cert.ownerID, "Home");
         }
+        [Authorize(Roles = "admin")]
         public ActionResult category_management()
         {
             IEnumerable<cert_category> categories = db_certs.categories;
@@ -244,11 +289,13 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult add_category()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult add_category(cert_category cat)
         {
             db_certs.categories.Add(cat);
@@ -257,6 +304,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult edit_category(int id)
         {
             ViewBag.category = db_certs.categories.First(d => d.id == id);
@@ -264,6 +312,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult edit_category(cert_category category)
         {
             var cat = db_certs.categories.First(d => d.id == category.id);
@@ -273,6 +322,7 @@ namespace CertificateControlMAA.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult delete_category(int id)
         {
 
