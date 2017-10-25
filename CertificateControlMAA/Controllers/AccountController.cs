@@ -139,7 +139,7 @@ namespace CertificateControlMAA.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles ="admin")]
         public ActionResult Register()
         {
             ViewBag.departments = db_certs.departments;
@@ -149,16 +149,22 @@ namespace CertificateControlMAA.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles ="admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
 
             if (ModelState.IsValid)
             {
+                string temp_data = "";
+                foreach (string a in model.departmentID)
+                {
+                    temp_data += a + " ";
+                }
                 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, departmentID = model.departmentID};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, departmentID = temp_data, user_name = model.user_name, surname = model.surname};
                 var result = await UserManager.CreateAsync(user, model.Password);
+
 
                 if (result.Succeeded)
                 {
@@ -411,6 +417,11 @@ namespace CertificateControlMAA.Controllers
         {
             return View();
         }
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

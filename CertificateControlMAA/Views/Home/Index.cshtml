@@ -20,9 +20,10 @@
                     <td><p><a href="/Home/delete_department/@b.id">Удалить</a></p></td>
                 </tr>
             }
-            
+      
         </table>
         <p>
             @Html.ActionLink("Регистрация нового пользователя", "Register", "Account", null, null)
+            @Html.ActionLink("Управление пользователями","user_list","Home",null,null)
         </p>
     </div>

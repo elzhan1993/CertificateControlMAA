@@ -38,4 +38,14 @@ namespace CertificateControlMAA.Models
         }
 
    }
+
+    public class startInitializator1 : DropCreateDatabaseAlways<CertContext>
+    {
+        protected override void Seed(CertContext context)
+        {
+            
+            base.Seed(context);
+        }
+
+    }
 }

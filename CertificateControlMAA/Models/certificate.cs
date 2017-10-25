@@ -15,7 +15,9 @@ namespace CertificateControlMAA.Models
         public DateTime getDate { get; set; }
         public int ownerID { get; set; }
         public int vendorID {get; set;}
-
-
+        public string file1_name { get; set; }
+        public string file2_name { get; set; }
+        public string file3_name { get; set; }
+        public string file4_name { get; set; }
     }
 }

@@ -49,7 +49,15 @@
                          }
                      </select> </td>
             </tr>
-            <tr><td><input type="submit" value="Изменить" /> </td><td></td></tr>
+            <tr>
+                <td>
+                    <input type="file" src="@ViewBag.img1" name="file" formenctype="multipart/form-data" /><br>
+                    <input type="file"  src="@ViewBag.img2" name="file" formenctype="multipart/form-data" /><br>
+                    <input type="file"  src="@ViewBag.img3" name="file" formenctype="multipart/form-data" /><br>
+                    <input type="file"  src="@ViewBag.img4" name="file" formenctype="multipart/form-data" /><br>
+                </td>
+            </tr>
+            <tr><td><input type="submit" value="Изменить" formenctype="multipart/form-data" /> </td><td></td></tr>
 
         </table>
     </form>

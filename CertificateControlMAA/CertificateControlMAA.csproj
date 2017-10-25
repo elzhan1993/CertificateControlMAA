@@ -212,8 +212,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\owner.cs" />
     <Compile Include="Models\startInitializator.cs" />
-    <Compile Include="Models\user.cs" />
-    <Compile Include="Models\userContext.cs" />
     <Compile Include="Models\vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -232,6 +230,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\1.pubxml" />
+    <None Include="Properties\PublishProfiles\for tse1-ams01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -293,9 +293,11 @@
     <Content Include="Views\Home\category_management.cshtml" />
     <Content Include="Views\Home\add_category.cshtml" />
     <Content Include="Views\Home\edit_category.cshtml" />
+    <Content Include="Views\Home\user_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
     <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
@@ -327,7 +329,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55177</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55177/</IISUrl>
+          <IISUrl>http://localhost:55178/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

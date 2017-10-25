@@ -1,9 +1,16 @@
-﻿body {
+﻿.login_header {
+    background-color: darkslategrey;
+    min-height:50px;
+    text-align:center;
+    color:wheat;
+    font-size:25px;
+}
+
+body {
     font-size: 13px;
     font-family:Arial;
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: aqua;
     padding-left: 40px;
 }
 
@@ -57,4 +64,12 @@ td {
 }
 input {
     width:150px;
+}
+
+#logoff {
+    right: 30px;
+}
+
+.form-group {
+    text-align:center;
 }

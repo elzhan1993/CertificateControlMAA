@@ -9,5 +9,7 @@ namespace CertificateControlMAA.Models
     {
         public string position { get; set; }
         public int departmentID { get; set; }
+        public string phone_number { get; set; }
+        public string email { get; set; }
     }
 }

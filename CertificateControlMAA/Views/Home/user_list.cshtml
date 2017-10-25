@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "view_users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h3>Список пользователей</h3>
+    <p><a href="/Home/AddOwner/@ViewBag.dep_id">Добавить сотрудника в текущую службу</a></p>
+    <p><a href="/Home/vendor_management">Управление списком организаций сертификации</a></p>
+    <table>
+        <tr>
+            <td><p>Логин (электронная почта)</p></td>
+            <td></td>
+        </tr>
+
+        @foreach (var b in ViewBag.users_list)
+            {
+            <tr>
+                <td><p>@b.UserName</p></td>
+                <td><p><a href="/Home/edit_user/@b.Id">Изменить</a></p></td>
+                <td><p><a href="/Home/delete_user/@b.Id">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</div>

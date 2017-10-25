@@ -2,17 +2,19 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Выполнить вход";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="login_header">
+    <h2>@ViewBag.Title.</h2>
+</div>
 
-<h2>@ViewBag.Title.</h2>
+
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Используйте свою учетную запись для входа.</h4>
+                <h4 style="text-align:center; font-size:20px;">Используйте свою учетную запись для входа.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -42,6 +44,13 @@
                         <input type="submit" value="Выполнить вход" class="btn btn-default" />
                     </div>
                 </div>
+                <div>
+                    <p> <a href="~/Files/123.txt" download> DOWNLOAD RESULT </a> </p>
+                    <p> <a href="~/Files/123.zip" download> DOWNLOAD RESULT </a> </p>
+                    <p> <a href="~/Files/123.png" download> DOWNLOAD RESULT </a> </p>
+                    <p> <a href="~/Files/123.jpg" download> DOWNLOAD RESULT </a> </p>
+                </div>
+
                 @* Включите, когда будет включено подтверждение учетной записи для функции сброса пароля
                     <p>
                         @Html.ActionLink("Забыли пароль?", "ForgotPassword")
@@ -50,9 +59,5 @@
         </section>
     </div>
 
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+
 </div>

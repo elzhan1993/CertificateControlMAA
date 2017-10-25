@@ -82,7 +82,16 @@ namespace CertificateControlMAA.Models
 
         [Required]
         [Display(Name = "Служба")]
-        public int departmentID { get; set; }
+        public string[] departmentID { get; set; }
+
+        [Required]
+        [Display(Name = "Имя")]
+        public string user_name { get; set; }
+
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string surname { get; set; }
+
 
     }
 
